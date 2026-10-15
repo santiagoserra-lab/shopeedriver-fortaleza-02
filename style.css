@@ -226,3 +226,1203 @@ footer{
     font-weight: 800;
     letter-spacing: 0.5px;
 }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+:root {
+    --shopee: #EE4D2D;
+    --shopee-dark: #D93B20;
+    --texto: #292929;
+    --texto-secundario: #666666;
+    --borda: #EAEAEA;
+    --fundo: #F4F5F7;
+    --branco: #FFFFFF;
+}
+
+body {
+    background: var(--fundo);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    color: var(--texto);
+}
+
+/* ===== CABEÇALHO ===== */
+
+header {
+    background: linear-gradient(135deg, #EE4D2D, #F65B36);
+    color: var(--branco);
+    text-align: center;
+    padding: 30px 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+    position: relative;
+}
+
+header h1 {
+    margin-bottom: 8px;
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: 0.4px;
+}
+
+header p {
+    opacity: 0.95;
+    font-size: 14px;
+}
+
+.desenvolvidoPor {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 12px;
+    color: #FFE0D8;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.desenvolvidoPor strong {
+    color: #FFFFFF;
+    font-weight: 700;
+}
+
+.versaoSistema {
+    display: inline-block;
+    padding: 5px 11px;
+    border: 1px solid #60A5FA;
+    border-radius: 20px;
+    background: rgba(29, 78, 216, 0.15);
+    color: #DBEAFE;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+/* ===== CONTEÚDO ===== */
+
+main {
+    flex: 1;
+    max-width: 1350px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+/* ===== CONTAINER MOTORISTA E AGÊNCIA ===== */
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    background: var(--branco);
+    padding: 26px;
+    border: 1px solid #EEEEEE;
+    border-radius: 18px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.06);
+    margin-bottom: 22px;
+    transition: box-shadow 0.25s ease;
+}
+
+.formulario:hover,
+.rotas-section:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.09);
+}
+
+.campo {
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.campo label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: #292929;
+}
+
+/* ===== INPUTS E SELECTS ===== */
+
+input,
+select {
+    width: 100%;
+    min-height: 52px;
+    padding: 13px 15px;
+    border: 1px solid #DDDDDD;
+    border-radius: 11px;
+    font-size: 16px;
+    background: #FFFFFF;
+    color: #292929;
+    outline: none;
+    transition: border-color 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+input::placeholder {
+    color: #929292;
+}
+
+input:hover,
+select:hover {
+    border-color: #C9C9C9;
+}
+
+input:focus,
+select:focus {
+    border-color: var(--shopee);
+    box-shadow: 0 0 0 3px rgba(238, 77, 45, 0.12);
+}
+
+/* ===== CONTAINER ROTAS DISPONÍVEIS ===== */
+
+.rotas-section {
+    background: var(--branco);
+    padding: 26px;
+    border: 1px solid #EEEEEE;
+    border-radius: 18px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.06);
+    transition: box-shadow 0.25s ease;
+}
+
+.rotas-section h2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 22px;
+    color: #292929;
+    font-size: 26px;
+    font-weight: 800;
+}
+
+/* ===== PESQUISA DE BAIRROS ===== */
+
+.campo-pesquisa {
+    margin: 0 0 24px 0;
+}
+
+.campo-pesquisa input {
+    width: 100%;
+    min-height: 54px;
+    padding: 14px 16px;
+    border: 1px solid #DDDDDD;
+    border-radius: 12px;
+    font-size: 16px;
+    background: #FFFFFF;
+}
+
+/* ===== GRADE DE ROTAS ===== */
+
+.grid-rotas {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fill,
+        minmax(260px, 1fr)
+    );
+    gap: 20px;
+    align-items: stretch;
+}
+
+/* ===== CARD INDIVIDUAL DA ROTA ===== */
+
+.card {
+    background: #FAFAFA;
+    border: 1px solid #EEEEEE;
+    border-left: 6px solid var(--shopee);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.22s ease,
+                box-shadow 0.22s ease,
+                border-color 0.22s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 9px 22px rgba(0, 0, 0, 0.09);
+    border-top-color: #F5B1A4;
+    border-right-color: #F5B1A4;
+    border-bottom-color: #F5B1A4;
+}
+
+.card h3 {
+    color: var(--shopee);
+    font-size: 21px;
+    font-weight: 800;
+    margin-bottom: 13px;
+    line-height: 1.3;
+}
+
+.card p {
+    margin-bottom: 9px;
+    color: #444444;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.card p:last-of-type {
+    margin-bottom: 0;
+}
+
+/* ===== BOTÕES ===== */
+
+button {
+    width: 100%;
+    min-height: 46px;
+    margin-top: 17px;
+    background: linear-gradient(135deg, #EE4D2D, #F65B36);
+    color: #FFFFFF;
+    border: none;
+    padding: 12px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 15px;
+    box-shadow: 0 4px 10px rgba(238, 77, 45, 0.15);
+    transition: background 0.2s ease,
+                box-shadow 0.2s ease,
+                transform 0.2s ease;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #D93B20, #EE4D2D);
+    box-shadow: 0 6px 14px rgba(238, 77, 45, 0.23);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* ===== RODAPÉ ===== */
+
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #777777;
+    font-size: 13px;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+
+@media (max-width: 768px) {
+    header {
+        padding: 25px 15px;
+    }
+
+    header h1 {
+        font-size: 25px;
+    }
+
+    main {
+        padding: 16px;
+    }
+
+    .formulario,
+    .rotas-section {
+        padding: 20px;
+        border-radius: 15px;
+    }
+
+    .formulario {
+        gap: 20px;
+    }
+
+    .rotas-section h2 {
+        font-size: 22px;
+    }
+
+    .grid-rotas {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .card {
+        padding: 18px;
+    }
+
+    .card h3 {
+        font-size: 20px;
+    }
+
+    button {
+        min-height: 48px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 380px) {
+    header h1 {
+        font-size: 22px;
+    }
+
+    main {
+        padding: 12px;
+    }
+
+    .formulario,
+    .rotas-section {
+        padding: 16px;
+    }
+
+    .rotas-section h2 {
+        font-size: 20px;
+    }
+
+    .desenvolvidoPor {
+        gap: 7px;
+    }
+}
+
+/* ===== LAYOUT EXATO DO MODELO ===== */
+
+body {
+    background: #F5F5F5;
+    color: #222;
+}
+
+/* Cabeçalho */
+
+header {
+    margin: 13px 4px 12px;
+    padding: 19px 12px;
+    background: #F83F2B;
+    border-radius: 13px;
+    box-shadow: none;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 20px;
+    margin-bottom: 7px;
+    font-weight: 800;
+}
+
+.desenvolvidoPor {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 0;
+    font-size: 12px;
+    color: #FFFFFF;
+}
+
+.desenvolvidoPor strong {
+    color: #FFFFFF;
+}
+
+.versaoSistema {
+    padding: 3px 8px;
+    border: none;
+    border-radius: 15px;
+    background: rgba(96, 165, 250, 0.20);
+    color: #1675E8;
+    font-size: 10px;
+}
+
+/* Área principal */
+
+main {
+    width: 100%;
+    max-width: none;
+    padding: 0 4px 5px;
+}
+
+/* Containers de Motorista e Agência */
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 16px;
+    margin-bottom: 13px;
+    background: #F2F2F2;
+    border: 1px solid #D8D8D8;
+    border-radius: 13px;
+    box-shadow: none;
+}
+
+.campo-container {
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    transition: none;
+}
+
+.campo-container:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+.campo-container:first-child {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #E1E1E1;
+}
+
+.titulo-container {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 13px;
+    padding: 0;
+    border: none;
+}
+
+.icone-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    flex-shrink: 0;
+    border-radius: 9px;
+    background: #FFF0EA;
+    font-size: 19px;
+}
+
+.titulo-container h2 {
+    margin: 0;
+    color: #222;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.titulo-container p {
+    display: none;
+}
+
+.campo-container .campo {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.campo-container .campo label {
+    display: none;
+}
+
+/* Campos */
+
+.campo-container input,
+.campo-container select {
+    width: 100%;
+    height: 52px;
+    min-height: 52px;
+    padding: 12px;
+    border: 1px solid #D9D9D9;
+    border-radius: 9px;
+    background: transparent;
+    color: #222;
+    font-size: 14px;
+    box-shadow: none;
+}
+
+.campo-container input:focus,
+.campo-container select:focus {
+    border-color: #F83F2B;
+    box-shadow: 0 0 0 2px rgba(248, 63, 43, 0.08);
+}
+
+/* Container de rotas */
+
+.rotas-section {
+    padding: 16px;
+    margin: 0 0 10px;
+    background: #F2F2F2;
+    border: 1px solid #D8D8D8;
+    border-radius: 13px;
+    box-shadow: none;
+}
+
+.rotas-section:hover {
+    box-shadow: none;
+}
+
+.rotas-section h2 {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 13px;
+    color: #222;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+/* Pesquisa */
+
+.campo-pesquisa {
+    margin: 0 0 12px;
+}
+
+.campo-pesquisa input {
+    height: 46px;
+    min-height: 46px;
+    padding: 12px;
+    border: 1px solid #D9D9D9;
+    border-radius: 9px;
+    background: transparent;
+    font-size: 13px;
+    box-shadow: none;
+}
+
+/* Grade */
+
+.grid-rotas {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+/* Card da rota */
+
+.card {
+    padding: 15px 12px 12px;
+    background: #FAFAFA;
+    border: 1px solid #FF4938;
+    border-left: 1px solid #FF4938;
+    border-radius: 9px;
+    box-shadow: none;
+    transition: none;
+}
+
+.card:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+.card h3 {
+    margin-bottom: 13px;
+    color: #FF402F;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.card p {
+    margin-bottom: 9px;
+    color: #222;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+/* Botão Pegar rota */
+
+.card button {
+    width: 100%;
+    min-height: 51px;
+    margin-top: 1px;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #F83F2B;
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    box-shadow: none;
+}
+
+.card button:hover {
+    background: #E93826;
+    box-shadow: none;
+}
+
+/* Rodapé */
+
+footer {
+    padding: 12px;
+    color: #777;
+    font-size: 12px;
+}
+
+/* Celular */
+
+@media (max-width: 600px) {
+    main {
+        padding: 0 4px 5px;
+    }
+
+    .formulario,
+    .rotas-section {
+        padding: 15px;
+    }
+
+    header {
+        padding: 19px 10px;
+    }
+
+    header h1 {
+        font-size: 20px;
+    }
+
+    .rotas-section h2 {
+        font-size: 17px;
+    }
+
+    .card {
+        padding: 15px 12px 12px;
+    }
+}
+
+/* ===== TÍTULO E CONTADOR DE ROTAS ===== */
+
+.rotas-section h2.tituloRotas {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 13px;
+    color: #222;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.tituloRotas .icone-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    flex-shrink: 0;
+    border-radius: 9px;
+    background: #FFF0EA;
+    font-size: 19px;
+}
+
+.tituloRotas .textoTitulo {
+    min-width: 0;
+}
+
+.contadorRotas {
+    margin-left: auto;
+    padding: 4px 9px;
+    border-radius: 15px;
+    background: #FFE1D6;
+    color: #E84A2F;
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+@media (max-width: 380px) {
+    .rotas-section h2.tituloRotas {
+        gap: 7px;
+        font-size: 15px;
+    }
+
+    .tituloRotas .icone-container {
+        width: 32px;
+        height: 32px;
+        font-size: 17px;
+    }
+
+    .contadorRotas {
+        padding: 4px 7px;
+        font-size: 10px;
+    }
+}
+
+.icone-container {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: #FFF0E9;
+    color: #FF4D35;
+    font-size: 22px;
+}
+
+.titulo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.titulo-container h2 {
+    margin: 0;
+    font-size: 20px;
+    color: #222;
+}
+
+.tituloRotas {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.tituloRotas .textoTitulo {
+    flex: 1;
+}
+
+.tituloRotas .contadorRotas {
+    margin-left: auto;
+}
+
+/* ===== NOVO VISUAL DO CABEÇALHO ROTAS EXTRAS ===== */
+
+header {
+    position: relative;
+    overflow: hidden;
+    margin: 13px 4px 12px;
+    padding: 20px 16px;
+    text-align: center;
+    color: #FFFFFF;
+
+    background:
+        radial-gradient(
+            ellipse at 100% 0%,
+            rgba(255, 106, 0, 0.24),
+            transparent 38%
+        ),
+        linear-gradient(
+            120deg,
+            #111827,
+            #080B12 65%,
+            #171923
+        );
+
+    border: 1px solid rgba(255, 106, 0, 0.45);
+    border-bottom: 4px solid #FF4D2D;
+    border-radius: 14px;
+
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.16);
+}
+
+header h1 {
+    margin-bottom: 7px;
+    color: #FFFFFF;
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+header .desenvolvidoPor {
+    margin-top: 0;
+    color: #CBD5E1;
+    font-size: 13px;
+}
+
+header .desenvolvidoPor strong {
+    color: #FFFFFF;
+}
+
+header .versaoSistema {
+    padding: 4px 10px;
+    border: 1px solid #FF6A35;
+    border-radius: 20px;
+    background: rgba(255, 106, 53, 0.12);
+    color: #FF9A72;
+    font-size: 11px;
+}
+
+/* Ícones padronizados do ROTAS EXTRAS */
+
+.icone-logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    margin-right: 8px;
+    border-radius: 11px;
+    background: linear-gradient(135deg, #ff6338, #ed3d24);
+    font-size: 23px;
+    vertical-align: middle;
+}
+
+.icone-container i {
+    color: #ff4d2d;
+    font-size: 21px;
+}
+
+.titulo-container .icone-container,
+.rotas-section .tituloRotas .icone-container {
+    background: #fff0e9;
+}
+
+/* Linhas curvas decorativas do cabeçalho */
+
+header {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+header::before,
+header::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+    width: 65%;
+    height: 160px;
+    top: -70px;
+    border-radius: 50%;
+    border-bottom: 1px solid rgba(255, 83, 35, 0.30);
+}
+
+header::before {
+    left: -10%;
+    transform: rotate(10deg);
+
+    box-shadow:
+        0 7px 0 -6px rgba(255, 83, 35, 0.42),
+        0 14px 0 -13px rgba(255, 83, 35, 0.36),
+        0 21px 0 -20px rgba(255, 83, 35, 0.30),
+        0 28px 0 -27px rgba(255, 83, 35, 0.24);
+}
+
+header::after {
+    right: -10%;
+    transform: rotate(-10deg);
+
+    box-shadow:
+        0 7px 0 -6px rgba(255, 83, 35, 0.42),
+        0 14px 0 -13px rgba(255, 83, 35, 0.36),
+        0 21px 0 -20px rgba(255, 83, 35, 0.30),
+        0 28px 0 -27px rgba(255, 83, 35, 0.24);
+}
+
+/* Modal de sucesso */
+
+#modalSucesso {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(5, 10, 20, 0.72);
+    backdrop-filter: blur(5px);
+    animation: aparecerModal 0.25s ease;
+}
+
+.modal-sucesso {
+    width: 100%;
+    max-width: 380px;
+    padding: 32px 25px 25px;
+    text-align: center;
+    background: #111827;
+    border: 1px solid #374151;
+    border-radius: 22px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+.icone-sucesso {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 76px;
+    height: 76px;
+    margin: 0 auto 20px;
+    color: #4ADE80;
+    background: #153D2B;
+    border: 1px solid #286344;
+    border-radius: 50%;
+    font-size: 42px;
+}
+
+.modal-sucesso h2 {
+    margin-bottom: 10px;
+    color: #FFFFFF;
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.modal-sucesso p {
+    margin-bottom: 25px;
+    color: #CBD5E1;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.modal-sucesso button {
+    width: 100%;
+    min-height: 48px;
+    margin: 0;
+    color: #FFFFFF;
+    background: linear-gradient(135deg, #FF633A, #EE4D2D);
+    border: none;
+    border-radius: 11px;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(238, 77, 45, 0.2);
+}
+
+.modal-sucesso button:hover {
+    background: #D93B20;
+}
+
+@keyframes aparecerModal {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* ===== MODAL PREMIUM DE CONFIRMAÇÃO ===== */
+
+#modalConfirmacaoRota {
+    position: fixed;
+    inset: 0;
+    z-index: 100000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    background: rgba(5, 10, 20, 0.76);
+    backdrop-filter: blur(7px);
+    animation: entradaConfirmacao .2s ease;
+}
+
+.confirmacao-card {
+    width: 100%;
+    max-width: 460px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 28px;
+    color: #F9FAFB;
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(238, 77, 45, .13),
+            transparent 42%
+        ),
+        #111827;
+    border: 1px solid #374151;
+    border-radius: 22px;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, .4);
+}
+
+.confirmacao-icone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 58px;
+    height: 58px;
+    margin-bottom: 20px;
+    color: white;
+    background: linear-gradient(135deg, #FF633A, #EE4D2D);
+    border-radius: 16px;
+    font-size: 28px;
+}
+
+.confirmacao-etiqueta {
+    color: #FF896B;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+}
+
+.confirmacao-card h2 {
+    margin: 8px 0;
+    color: white;
+    font-size: 27px;
+    font-weight: 800;
+}
+
+.confirmacao-descricao {
+    margin-bottom: 22px;
+    color: #9CA3AF;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.confirmacao-dados {
+    padding: 5px 16px;
+    background: rgba(255, 255, 255, .035);
+    border: 1px solid #303A4B;
+    border-radius: 14px;
+}
+
+.confirmacao-linha {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 13px 0;
+    border-bottom: 1px solid #303A4B;
+}
+
+.confirmacao-linha:last-child {
+    border-bottom: none;
+}
+
+.confirmacao-linha span {
+    color: #9CA3AF;
+    font-size: 12px;
+}
+
+.confirmacao-linha span i {
+    margin-right: 5px;
+    color: #FF704F;
+}
+
+.confirmacao-linha strong {
+    color: #F9FAFB;
+    font-size: 14px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.confirmacao-acoes {
+    display: flex;
+    gap: 10px;
+    margin-top: 22px;
+}
+
+.confirmacao-acoes button {
+    flex: 1;
+    min-width: 0;
+    min-height: 48px;
+    margin: 0;
+    padding: 12px;
+    border-radius: 11px;
+    font-size: 13px;
+    font-weight: 800;
+    box-shadow: none;
+}
+
+.confirmacao-acoes .btn-cancelar {
+    color: #E5E7EB;
+    background: #252F40;
+    border: 1px solid #414B5B;
+}
+
+.confirmacao-acoes .btn-cancelar:hover {
+    background: #374151;
+}
+
+.confirmacao-acoes .btn-confirmar {
+    color: white;
+    background: linear-gradient(135deg, #FF633A, #EE4D2D);
+}
+
+.confirmacao-acoes .btn-confirmar:hover {
+    background: #D93B20;
+}
+
+@keyframes entradaConfirmacao {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 480px) {
+    .confirmacao-card {
+        padding: 22px 18px;
+        border-radius: 18px;
+    }
+
+    .confirmacao-card h2 {
+        font-size: 24px;
+    }
+
+    .confirmacao-acoes {
+        flex-direction: column-reverse;
+    }
+
+    .confirmacao-acoes button {
+        flex: auto;
+        width: 100%;
+    }
+}
+
+/* ===== MODAL DE AVISO ===== */
+
+#modalAviso {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(12, 18, 29, 0.65);
+    backdrop-filter: blur(5px);
+    animation: avisoEntrada 0.2s ease;
+}
+
+.aviso-card {
+    width: 100%;
+    max-width: 390px;
+    padding: 28px 24px 22px;
+    text-align: center;
+    background: #FFFFFF;
+    border: 1px solid #EEEEEE;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.22);
+}
+
+.aviso-icone {
+    width: 58px;
+    height: 58px;
+    margin: 0 auto 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 17px;
+    background: #FFF0EA;
+    color: #F83F2B;
+    font-size: 27px;
+}
+
+.aviso-card h2 {
+    margin-bottom: 10px;
+    color: #202735;
+    font-size: 21px;
+    font-weight: 800;
+}
+
+.aviso-card p {
+    margin-bottom: 23px;
+    color: #697386;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.aviso-card .aviso-botao {
+    width: 100%;
+    min-height: 48px;
+    margin: 0;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #F83F2B, #E93826);
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 5px 12px rgba(248, 63, 43, 0.2);
+}
+
+.aviso-card .aviso-botao:hover {
+    background: #D93222;
+}
+
+@keyframes avisoEntrada {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

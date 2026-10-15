@@ -1,92 +1,141 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>ROTAS EXTRAS</title>
 
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
+    <!-- CABEÇALHO -->
     <header>
-    <h1>🚚 ROTAS EXTRAS</h1>
+        <h1>
+    <span class="icone-logo">🚚</span>
+    ROTAS EXTRAS
+</h1>
 
-    <div class="desenvolvidoPor">
-        Desenvolvido por <strong>Santiago Serra</strong>
-        <span class="versaoSistema">LMA-02</span>
-    </div>
-</header>
+        <div class="desenvolvidoPor">
+            Desenvolvido por <strong>Santiago Serra</strong>
+            <span class="versaoSistema">LMA-02</span>
+        </div>
+    </header>
 
     <main>
 
+        <!-- CONTAINER MOTORISTA E AGÊNCIA -->
         <section class="formulario">
 
-            <div class="campo">
+            <!-- MOTORISTA -->
+            <div class="campo-container">
 
-                <label>
-                    👨‍✈️ Motorista
-                </label>
+                <div class="titulo-container">
+                    <span class="icone-container">
+    <i class="bi bi-person"></i>
+</span>
 
-                <input
-                    type="text"
-                    id="buscarMotorista"
-                    list="motoristas"
-                    placeholder="Digite seu nome..."
-                    autocomplete="off"
-                >
+                    <div>
+                        <h2>Motorista</h2>
+                    </div>
+                </div>
 
-                <datalist id="motoristas"></datalist>
+                <div class="campo">
+                    <label for="buscarMotorista">
+                        Nome do motorista
+                    </label>
+
+                    <input
+                        type="text"
+                        id="buscarMotorista"
+                        list="motoristas"
+                        placeholder="Digite seu nome..."
+                        autocomplete="off"
+                    >
+
+                    <datalist id="motoristas"></datalist>
+                </div>
 
             </div>
 
-            <div class="campo">
+            <!-- SEPARADOR -->
+            <div class="separadorFormulario"></div>
 
-                <label>
-                    🏢 Agência
-                </label>
+            <!-- AGÊNCIA -->
+            <div class="campo-container">
 
-                <select id="agencia">
+                <div class="titulo-container">
+                    <span class="icone-container">
+    <i class="bi bi-buildings"></i>
+</span>
 
-                    <option value="">
-                        Carregando...
-                    </option>
+                    <div>
+                        <h2>Agência</h2>
+                    </div>
+                </div>
 
-                </select>
+                <div class="campo">
+                    <label for="agencia">
+                        Agência responsável
+                    </label>
+
+                    <select id="agencia">
+                        <option value="">
+                            Carregando...
+                        </option>
+                    </select>
+                </div>
 
             </div>
 
         </section>
 
+        <!-- CONTAINER ROTAS DISPONÍVEIS -->
         <section class="rotas-section">
 
-          <h2 id="tituloRotas">
-    📦 Rotas Disponíveis
-</h2>
+            <h2 id="tituloRotas" class="tituloRotas">
 
-<div class="campo-pesquisa">
-    <input
-        type="text"
-        id="pesquisaBairro"
-        placeholder="🔍 Pesquisar bairro..."
-        onkeyup="filtrarBairros()"
-    >
-</div>
+                <span class="icone-container">
+    <i class="bi bi-box"></i>
+</span>
 
-<div
-    id="rotas"
-    class="grid-rotas"
->
+                <span class="textoTitulo">
+                    Rotas Disponíveis
+                </span>
+
+                <span
+                    id="contadorRotas"
+                    class="contadorRotas"
+                >
+                    0 rotas
+                </span>
+
+            </h2>
+
+            <!-- PESQUISA DE BAIRROS -->
+            <div class="campo-pesquisa">
+
+                <input
+                    type="text"
+                    id="pesquisaBairro"
+                    placeholder="Pesquisar bairro..."
+                    onkeyup="filtrarBairros()"
+                    aria-label="Pesquisar bairro"
+                >
+
+            </div>
+
+            <!-- LISTA DE ROTAS -->
+            <div id="rotas" class="grid-rotas">
 
                 <div class="card">
-
                     Carregando rotas...
-
                 </div>
 
             </div>
@@ -95,18 +144,15 @@
 
     </main>
 
+    <!-- RODAPÉ -->
     <footer>
-
-        <p>
-            LAM-02 © 2026
-        </p>
-
+        <p>LMA-02 © 2026</p>
     </footer>
 
+    <!-- SCRIPTS ORIGINAIS -->
     <script src="config.js"></script>
     <script src="api.js"></script>
     <script src="app.js"></script>
 
 </body>
-
 </html>

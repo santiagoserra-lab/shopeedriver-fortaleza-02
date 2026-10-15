@@ -69,54 +69,46 @@ function preencherMotoristas(drivers) {
 
 }
 
+
 function renderizarRotas(rotas) {
-
-    const divRotas =
-        document.getElementById("rotas");
-
+    const divRotas = document.getElementById("rotas");
     if (!divRotas) return;
+
+    const listaRotas = rotas || [];
+
+    const contador = document.getElementById("contadorRotas");
+
+    if (contador) {
+        contador.textContent =
+            `${listaRotas.length} ${listaRotas.length === 1 ? "rota" : "rotas"}`;
+    }
 
     divRotas.innerHTML = "";
 
-    const titulo =
-        document.getElementById("tituloRotas");
-
-    if (titulo) {
-
-        titulo.innerHTML =
-            `📦 Rotas Disponíveis (${rotas ? rotas.length : 0})`;
-
-    }
-
-    if (!rotas || rotas.length === 0) {
-
+    if (listaRotas.length === 0) {
         divRotas.innerHTML = `
             <div class="card">
                 <h3>Nenhuma rota disponível</h3>
             </div>
         `;
-
         return;
-
     }
 
     let html = "";
 
-    rotas.forEach(rota => {
-
+    listaRotas.forEach(rota => {
         html += `
             <div class="card">
-
-                <h3>${rota.bairro}</h3>
+                <h3>${rota.bairro || "-"}</h3>
 
                 <p>
                     <strong>Cidade:</strong>
-                    ${rota.cidade}
+                    ${rota.cidade || "-"}
                 </p>
 
                 <p>
                     <strong>Gaiola:</strong>
-                    ${rota.gaiola}
+                    ${rota.gaiola || "-"}
                 </p>
 
                 <button
@@ -124,15 +116,13 @@ function renderizarRotas(rotas) {
                 >
                     Pegar rota
                 </button>
-
             </div>
         `;
-
     });
 
     divRotas.innerHTML = html;
-
 }
+
 
 async function pegarRota(rota) {
 
@@ -148,15 +138,14 @@ async function pegarRota(rota) {
                 "agencia"
             ).value;
 
-        if (!nomeDigitado) {
-
-            alert(
-                "Digite o nome do motorista."
-            );
-
-            return;
-
-        }
+       if (!nomeDigitado) {
+    mostrarModalAviso(
+        "Motorista obrigatório",
+        "Digite o nome do motorista para continuar.",
+        "bi-person"
+    );
+    return;
+}
 
         if (!agencia) {
 
@@ -183,16 +172,15 @@ async function pegarRota(rota) {
 
         }
 
-        const confirmar = confirm(
-            `CONFIRMAR ROTA\n\n` +
-            `Motorista: ${driver.nome}\n` +
-            `Agência: ${agencia}\n` +
-            `Bairro: ${rota.bairro}\n` +
-            `Cidade: ${rota.cidade}\n` +
-            `Gaiola: ${rota.gaiola}`
-        );
+        const confirmar = await mostrarModalConfirmacao({
+    motorista: driver.nome,
+    agencia: agencia,
+    bairro: rota.bairro,
+    cidade: rota.cidade,
+    gaiola: rota.gaiola
+});
 
-        if (!confirmar) return;
+if (!confirmar) return;
 
         const dados = {
 
@@ -213,9 +201,7 @@ async function pegarRota(rota) {
 
         if (resultado.sucesso) {
 
-            alert(
-                "✅ Rota reservada com sucesso!"
-            );
+            mostrarModalSucesso();
 
             document.getElementById(
                 "buscarMotorista"
@@ -286,4 +272,174 @@ function filtrarBairros() {
 
     });
 
+}
+
+function mostrarModalSucesso() {
+    const modal = document.createElement("div");
+
+    modal.id = "modalSucesso";
+    modal.innerHTML = `
+        <div class="modal-sucesso">
+            <div class="icone-sucesso">
+                <i class="bi bi-check-lg"></i>
+            </div>
+
+            <h2>Rota reservada!</h2>
+
+            <p>
+                Sua rota foi reservada com sucesso.
+            </p>
+
+            <button id="btnFecharSucesso">
+                OK, ENTENDI
+            </button>
+        </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    document.getElementById("btnFecharSucesso")
+        .addEventListener("click", () => {
+            modal.remove();
+        });
+}
+
+function mostrarModalConfirmacao(dados) {
+    return new Promise((resolve) => {
+        const modal = document.createElement("div");
+        modal.id = "modalConfirmacaoRota";
+
+        modal.innerHTML = `
+            <div class="confirmacao-card">
+                <div class="confirmacao-icone">
+                    <i class="bi bi-truck"></i>
+                </div>
+
+                <span class="confirmacao-etiqueta">
+                    CONFIRMAÇÃO DE RESERVA
+                </span>
+
+                <h2>Confirmar rota?</h2>
+
+                <p class="confirmacao-descricao">
+                    Confira os dados antes de continuar.
+                </p>
+
+                <div class="confirmacao-dados">
+                    <div class="confirmacao-linha">
+                        <span><i class="bi bi-person"></i> Motorista</span>
+                        <strong>${escaparHTML(dados.motorista)}</strong>
+                    </div>
+
+                    <div class="confirmacao-linha">
+                        <span><i class="bi bi-buildings"></i> Agência</span>
+                        <strong>${escaparHTML(dados.agencia)}</strong>
+                    </div>
+
+                    <div class="confirmacao-linha">
+                        <span><i class="bi bi-geo-alt"></i> Bairro</span>
+                        <strong>${escaparHTML(dados.bairro)}</strong>
+                    </div>
+
+                    <div class="confirmacao-linha">
+                        <span><i class="bi bi-geo"></i> Cidade</span>
+                        <strong>${escaparHTML(dados.cidade)}</strong>
+                    </div>
+
+                    <div class="confirmacao-linha">
+                        <span><i class="bi bi-box-seam"></i> Gaiola</span>
+                        <strong>${escaparHTML(dados.gaiola)}</strong>
+                    </div>
+                </div>
+
+                <div class="confirmacao-acoes">
+                    <button type="button" class="btn-cancelar">
+                        Cancelar
+                    </button>
+
+                    <button type="button" class="btn-confirmar">
+                        <i class="bi bi-check-lg"></i>
+                        Confirmar reserva
+                    </button>
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(modal);
+
+        function fechar(resultado) {
+            modal.remove();
+            resolve(resultado);
+        }
+
+        modal.querySelector(".btn-cancelar")
+            .addEventListener("click", () => fechar(false));
+
+        modal.querySelector(".btn-confirmar")
+            .addEventListener("click", () => fechar(true));
+
+        modal.addEventListener("click", (event) => {
+            if (event.target === modal) fechar(false);
+        });
+
+        function teclaEsc(event) {
+            if (event.key === "Escape") {
+                fechar(false);
+                document.removeEventListener("keydown", teclaEsc);
+            }
+        }
+
+        document.addEventListener("keydown", teclaEsc);
+    });
+}
+
+function escaparHTML(valor) {
+    return String(valor ?? "").replace(/[&<>"']/g, caractere => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+    })[caractere]);
+}
+
+function mostrarModalAviso(titulo, mensagem, icone = "bi-info-circle") {
+    // Remove aviso anterior, se existir
+    document.getElementById("modalAviso")?.remove();
+
+    const modal = document.createElement("div");
+    modal.id = "modalAviso";
+
+    modal.innerHTML = `
+        <div class="aviso-card" role="alertdialog"
+             aria-modal="true" aria-labelledby="avisoTitulo">
+            <div class="aviso-icone">
+                <i class="bi ${icone}"></i>
+            </div>
+
+            <h2 id="avisoTitulo">${escaparHTML(titulo)}</h2>
+
+            <p>${escaparHTML(mensagem)}</p>
+
+            <button type="button" class="aviso-botao">
+                Entendi
+            </button>
+        </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    const botao = modal.querySelector(".aviso-botao");
+
+    function fechar() {
+        modal.remove();
+    }
+
+    botao.addEventListener("click", fechar);
+
+    modal.addEventListener("click", (event) => {
+        if (event.target === modal) fechar();
+    });
+
+    botao.focus();
 }
